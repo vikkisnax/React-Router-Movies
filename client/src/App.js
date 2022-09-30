@@ -41,16 +41,21 @@ export default function App () {
 
     <nav>
       <div className='nav-links'>
+        {/* what do I link these to? movie to each card and movie list to all of them?*/}
         <Link to="/">Movie List </Link>
         <Link to="/movies">Movie</Link>
       </div>
     </nav>
 
       <Switch>
-        <Route path="/movies/id">
+        {/*2nd way to render Route - render function. didn't use here though */}
+ 
+        {/* 3rd way to render Route - component. path. */}
+        <Route path="/movies/:id"> 
           <Movie />
         </Route>
 
+        {/* 1st way to render Route */}
         <Route path="/">
           <MovieList movies={movieList} />
           {/* movie bc that's what the prop name is in MovieList -- props.movies */}
