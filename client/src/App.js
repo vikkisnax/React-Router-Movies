@@ -41,9 +41,12 @@ export default function App () {
 
     <nav>
       <div className='nav-links'>
-        {/* what do I link these to? movie to each card and movie list to all of them?*/}
-        <Link to="/">Movie List </Link>
-        <Link to="/movies">Movie</Link>
+        {/* what do I link these to? movie to each card and movie list to all of them? -- what if I put the components here instead..aka with Route*/}
+        {/* <Route path="/movies/:id"> 
+          <Link to="/">MovieList</Link>
+        </Route> */}
+        {/* <Link to="/movies">Movie</Link> */}
+          {/* don't need these. I linked home button in SavedList component to the home url "/" */}
       </div>
     </nav>
 
@@ -52,7 +55,7 @@ export default function App () {
  
         {/* 3rd way to render Route - component. path. */}
         <Route path="/movies/:id"> 
-          <Movie />
+          <Movie movies={movieList} />
         </Route>
 
         {/* 1st way to render Route */}
