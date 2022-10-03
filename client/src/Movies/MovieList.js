@@ -12,8 +12,9 @@ export default function MovieList(props) {
     <div className="movie-list">
       {props.movies.map(movie => (
         // key needs to be in parent/outer part, not inside in MD. if the movie id matches the url, then return MovieCard component. also pass in movie props aka array
+        // https://youtu.be/HC9fnq8JGjE?t=4212
         <Link to={`/movies/${movie.id}`} key={movie.id}>
-          <MovieCard movie={movie}/>
+          <MovieCard movie={movie} addToSavedList={props.addToSavedList}/>
         </Link>
       ))}
     </div>

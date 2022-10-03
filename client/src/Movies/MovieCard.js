@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MovieCard (props) {
   
-  const { title, director, metascore, stars } = props.movie;
+  const { title, director, metascore, stars, id } = props.movie;
   
   // console.log('stars:', props.movie) // stars show up when i click a card 
 
@@ -34,7 +34,14 @@ export default function MovieCard (props) {
           )
         }
       </div>
-      <div className="save-button">Save</div>
+      
+      {/* stops the site from ALSO clicking/going to the movie card when we click ‘save’ button */}
+      <div className="save-button" onClick={(e) => {
+          e.preventDefault();
+          props.addToSavedList(id)
+        }}>
+        Save
+        </div>
     </div>
   );
 }

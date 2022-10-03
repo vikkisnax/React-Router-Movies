@@ -11,7 +11,9 @@ import Movie from './Movies/Movie';
 
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
+  console.log('saved:', saved)
   const [movieList, setMovieList] = useState([]);
+  // console.log('movieList:', movieList)
 
   useEffect(() => {
     const getMovies = () => {
@@ -33,34 +35,40 @@ export default function App () {
 
   const addToSavedList = id => {
     // This is stretch. Prevent the same movie from being "saved" more than once
+    // [1, 2]
+    // ...[1,2]
+    // 1, 2
+    setSaved([...saved, id])
   };
+
+  const saveList = movieList.filter(movie => saved.includes(movie.id))
 
   return (
     <div>
-      <SavedList list={[ /* This is stretch */]} />
+      <SavedList list={saveList} />
 
-    <nav>
-      <div className='nav-links'>
+    {/* <nav>
+      <div className='nav-links'> */}
         {/* what do I link these to? movie to each card and movie list to all of them? -- what if I put the components here instead..aka with Route*/}
         {/* <Route path="/movies/:id"> 
           <Link to="/">MovieList</Link>
         </Route> */}
         {/* <Link to="/movies">Movie</Link> */}
           {/* don't need these. I linked home button in SavedList component to the home url "/" */}
-      </div>
-    </nav>
+      {/* </div>
+    </nav> */}
 
       <Switch>
         {/*2nd way to render Route - render function. didn't use here though */}
  
         {/* 3rd way to render Route - component. path. */}
         <Route path="/movies/:id"> 
-          <Movie movies={movieList} />
+          <Movie movies={movieList} addToSavedList={addToSavedList} />
         </Route>
 
         {/* 1st way to render Route */}
         <Route path="/">
-          <MovieList movies={movieList} />
+          <MovieList movies={movieList} addToSavedList={addToSavedList} />
           {/* movie bc that's what the prop name is in MovieList -- props.movies */}
         </Route>
       </Switch>

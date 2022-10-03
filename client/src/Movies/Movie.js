@@ -9,9 +9,10 @@ import MovieCard from './MovieCard';
 export default function Movie(props) {
   // console.log('props:', props)
   const [movie, setMovie] = useState();
-  console.log('movie:', movie)
 
-  const {id} = useParams(); // was line 7 - useParams returns an object of the url params. param is in App.js :id aka PARAM. needed to destructure the array aka take out the id from the array. 
+  const {id} = useParams(); 
+  // was line 7 - useParams returns an object of the url params. param is in App.js :id aka PARAM. needed to destructure the array aka take out the id from the array. 
+  // https://v5.reactrouter.com/web/api/Hooks/useparams
   // console.log('id:', id)
 
   // let id = 1; // ^^ 
@@ -20,8 +21,8 @@ export default function Movie(props) {
 
 
 
-// here we're getting info from axios request in Movie.js, which gets back the STARS (NOT the movie)
 
+// here we're getting info from axios request in Movie.js, which gets back the STARS (NOT the movie)
   useEffect(() => {
     axios
       .get(`http://localhost:5001/api/movies/${id}`) // Study this endpoint with Postman
@@ -40,12 +41,8 @@ export default function Movie(props) {
     // the `id` changes... How could we do this? -- id in dependency array
   }, [id]);
 
-
-
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = evt => { }
-
-
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -53,8 +50,21 @@ export default function Movie(props) {
 
 
   return (
-    <MovieCard movie={movie}/>
+    <MovieCard movie={movie} addToSavedList={props.addToSavedList} />
   );
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // const { title, director, metascore, stars } = movie;
